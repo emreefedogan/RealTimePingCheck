@@ -1,6 +1,6 @@
 # Ping Tarayıcı
 
-Bu proje, belirli bir IP aralığına ping atarak ulaşılabilir ve ulaşılamayan IP adreslerini tespit eden bir web uygulamasıdır. Uygulama, Flask framework'ü kullanılarak geliştirilmiştir ve ping sonuçlarını anlık olarak gösterir.
+Bu proje, belirli bir IP aralığına ping atarak ulaşılabilir ve ulaşılamayan IP adreslerini tespit eden bir web uygulamasıdır. Uygulama, FastAPI framework'ü kullanılarak geliştirilmiştir ve ping sonuçlarını anlık olarak gösterir.
 
 ![Ping Tarayıcı Arayüzü](ping.png)
 
@@ -15,7 +15,8 @@ Bu proje, belirli bir IP aralığına ping atarak ulaşılabilir ve ulaşılamay
 
 Bu projeyi çalıştırmak için aşağıdaki Python kütüphanelerine ihtiyacınız var:
 
-- Flask
+- FastAPI
+- Uvicorn
 
 ## Kurulum
 
@@ -39,12 +40,11 @@ Bu projeyi çalıştırmak için aşağıdaki Python kütüphanelerine ihtiyacı
    python pingscanning.py
    ```
 
-5. **Tarayıcıda açın.** Uygulama çalıştıktan sonra, tarayıcınızda `http://127.0.0.1:5000` adresine gidin.
+5. **Tarayıcıda açın.** Uygulama çalıştıktan sonra, tarayıcınızda `http://127.0.0.1:8000` adresine gidin.
 
 ## Kullanım
 
 Uygulama açıldığında, ping atılan IP adreslerinin durumunu görebilirsiniz. Ulaşılabilir IP adresleri yeşil renkte, ulaşılamayan IP adresleri ise kırmızı renkte gösterilir. Sonuçlar her 5 saniyede bir güncellenir.
-
 
 ## Lisans
 
