@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Tarayıcı</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .reachable {
+            color: green;
+        }
+        .unreachable {
+            color: red;
+        }
+        .ip-list {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Ping Tarayıcı</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Ulaşılabilir IP Adresleri:</h2>
+                <ul id="reachable-list" class="list-group ip-list"></ul>
+            </div>
+            <div class="col-md-6">
+                <h2>Ulaşılamayan IP Adresleri:</h2>
+                <ul id="unreachable-list" class="list-group ip-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchResults() {
+            const response = await fetch('/results');
+            const data = await response.json();
+            const reachableList = document.getElementById('reachable-list');
+            const unreachableList = document.getElementById('unreachable-list');
+
+            reachableList.innerHTML = '';
+            unreachableList.innerHTML = '';
+
+            data.reachable.forEach(ip => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item reachable';
+                li.textContent = ip;
+                reachableList.appendChild(li);
+            });
+
+            data.unreachable.forEach(ip => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item unreachable';
+                li.textContent = ip;
+                unreachableList.appendChild(li);
+            });
+        }
+
+        setInterval(fetchResults, 5000);  // Her 5 saniyede bir güncelle
+    </script>
+
+    <!-- Bootstrap JS ve jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
